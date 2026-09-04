@@ -8,8 +8,8 @@ export default class SalesOrderService extends cds.ApplicationService {
 
     this.on('get_sales_order', async () => {
       const order = await remote.send({ method: 'GET', path: '/http/ch/s4/saml2bearer/salesorder' })
-      //return JSON.stringify(order);      
-      return order;
+      //return JSON.stringify(order);
+      return order
     })
 
     return super.init()

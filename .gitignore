@@ -18,3 +18,5 @@ Makefile_*.mta
 
 # @cap-js/cds-typer
 @cds-models
+
+@cds-models

@@ -79,7 +79,7 @@ resources:
           redirect-uris:
             - https://oauth.pstmn.io/v1/callback
           token-policy:
-            access-token-format: "jwt"          
+            access-token-format: "jwt"
         authorization:
           enabled: true
         xsuaa-cross-consumption: true

@@ -12,10 +12,16 @@
   },
   "devDependencies": {
     "@sap/ams-dev": "^2",
-    "@sap/cds-dk": "^10"
+    "@sap/cds-dk": "^10",
+    "@cap-js/cds-types": "^0.18.0",
+    "@types/node": "^24.0.0",
+    "tsx": "^4",
+    "typescript": "^7.0.0",
+    "@cap-js/cds-typer": ">=0.1"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "build": "cds build"
   },
   "private": true,
   "cds": {
@@ -28,7 +34,7 @@
         },
         "[production]": {
           "credentials": {
-            "destination": "SALES_ORDER_DESTINATION"            
+            "destination": "SALES_ORDER_DESTINATION"
           }
         }
       },
@@ -39,5 +45,8 @@
   },
   "engines": {
     "node": "^24"
+  },
+  "imports": {
+    "#cds-models/*": "./@cds-models/*/index.js"
   }
 }
