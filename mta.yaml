@@ -1,0 +1,82 @@
+_schema-version: 3.3.0
+ID: cap-s4-iflow
+version: 1.0.0
+description: "CAP project consume iFlow (S/4 API via OAuth2SAMLBEARER)"
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+modules:
+  - name: cap-s4-iflow-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      instances: 1
+      buildpack: nodejs_buildpack
+      routes:
+        - route: "${default-url}"
+        - route: "${default-host}.cert.${default-domain}"
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+          srv-cert-url: '${protocol}://${default-host}.cert.${default-domain}'
+    requires:
+      - name: cap-s4-iflow-destination
+      - name: cap-s4-iflow-ias
+        parameters:
+          config:
+            credential-type: X509_GENERATED
+            app-identifier: srv
+    deployed-after:
+      - cap-s4-iflow-ams-policies-deployer
+    properties:
+      AMS_DCL_ROOT: ams/dcl
+
+  - name: cap-s4-iflow-ams-policies-deployer
+    type: javascript.nodejs
+    path: gen/policies
+    parameters:
+      buildpack: nodejs_buildpack
+      no-route: true
+      no-start: true
+      tasks:
+        - name: deploy-dcl
+          command: npm start
+          memory: 512M
+    requires:
+      - name: cap-s4-iflow-ias
+        parameters:
+          config:
+            credential-type: X509_GENERATED
+            app-identifier: ams-policy-deployer
+
+resources:
+  - name: cap-s4-iflow-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+  - name: cap-s4-iflow-ias
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: identity
+      service-name: cap-s4-iflow-ias
+      service-plan: application
+      config:
+        provided-apis:
+          - name: cap-s4-iflow-ias-api
+            description: API exposed by the application
+        display-name: cap-s4-iflow
+        oauth2-configuration:
+          token-policy:
+            access-token-format: "jwt"
+        authorization:
+          enabled: true
+        xsuaa-cross-consumption: true

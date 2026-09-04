@@ -1,0 +1,45 @@
+{
+  "name": "cap-s4-iflow",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@sap-cloud-sdk/connectivity": "^4.9.1",
+    "@sap-cloud-sdk/http-client": "^4.9.1",
+    "@sap-cloud-sdk/resilience": "^4.9.1",
+    "@sap/ams": "^3",
+    "@sap/cds": "^10",
+    "@sap/xssec": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^3",
+    "@sap/ams-dev": "^2",
+    "@sap/cds-dk": "^10"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "SalesOrderAPI": {
+        "kind": "rest",
+        "credentials": {
+          "url": "https://services.odata.org/V2/Northwind/Northwind.svc/Orders",
+          "authentication": "NoAuthentication"
+        },
+        "[production]": {
+          "credentials": {
+            "destination": "SALES_ORDER_DESTINATION",
+            "path": "/"
+          }
+        }
+      },
+      "[production]": {
+        "auth": "ias"
+      }
+    }
+  },
+  "engines": {
+    "node": "^24"
+  }
+}
