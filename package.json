@@ -28,8 +28,7 @@
         },
         "[production]": {
           "credentials": {
-            "destination": "SALES_ORDER_DESTINATION",
-            "path": "/"
+            "destination": "SALES_ORDER_DESTINATION"            
           }
         }
       },
