@@ -75,8 +75,11 @@ resources:
             description: API exposed by the application
         display-name: cap-s4-iflow
         oauth2-configuration:
+          redirect-uris:
+            - https://oauth.pstmn.io/v1/callback
+          public-client: true
           token-policy:
-            access-token-format: "jwt"
+            access-token-format: "jwt"          
         authorization:
           enabled: true
         xsuaa-cross-consumption: true
