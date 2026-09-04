@@ -8,8 +8,7 @@ export default class SalesOrderService extends cds.ApplicationService {
 
     this.on('get_sales_order', async () => {
       const order = await remote.send({ method: 'GET', path: '/' })
-      //return JSON.stringify(order)
-      return `{"success": true}`;
+      return JSON.stringify(order);      
     })
 
     return super.init()
