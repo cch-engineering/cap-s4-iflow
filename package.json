@@ -11,7 +11,6 @@
     "@sap/xssec": "^4"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^3",
     "@sap/ams-dev": "^2",
     "@sap/cds-dk": "^10"
   },
