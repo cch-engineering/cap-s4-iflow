@@ -34,7 +34,7 @@ cf deploy mta_archives/cap-s4-iflow_1.0.0.mtar
 
 ## For setting up SAML2BearerAssertion in Cloud Integration consuming the S/4HANA Public Cloud API
 
-[](/images/CI_OAuth2SAMLAssertion.png)
+<br>![](./images/CI_OAuth2SAMLAssertion.png)
 
 Property | Value
 --- | ---
