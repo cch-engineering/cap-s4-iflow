@@ -26,7 +26,7 @@
   "private": true,
   "cds": {
     "requires": {
-      "SalesOrderAPI": {
+      "CloudIntegrationRuntime": {
         "kind": "rest",
         "credentials": {
           "url": "https://services.odata.org/V2/Northwind/Northwind.svc/Orders",
@@ -34,7 +34,7 @@
         },
         "[production]": {
           "credentials": {
-            "destination": "SALES_ORDER_DESTINATION"
+            "destination": "ci-runtime"
           }
         }
       },

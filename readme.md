@@ -6,17 +6,33 @@ It contains these folders and files, following our recommended project layout:
 
 File or Folder | Purpose
 ---------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
 `srv/` | your service models and code go here
 `readme.md` | this getting started guide
 
-## Next Steps
+## Project Setup Commands
 
-- Open a new terminal and run `cds watch`
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start with your domain model, in a CDS file in `db/`
+Commands used to set up and evolve this project:
 
+```sh
+cds init
+cds add ias
+cds add ams
+cds add typescript
+cds add mta
+npm install
+```
+
+## Build
+
+```sh
+mbt build
+```
+
+## Deploy
+
+```sh
+cf deploy mta_archives/cap-s4-iflow_1.0.0.mtar
+```
 ## Learn More
 
 Learn more at <https://cap.cloud.sap>.
