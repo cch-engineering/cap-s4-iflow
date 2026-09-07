@@ -51,4 +51,5 @@ authnContextClassRef (Additional Properties) | urn:oasis:names:tc:SAML:2.0:ac:cl
 ## Learn More
 
 Learn more at <https://cap.cloud.sap>.
+
 Setting up CAP MCP server <https://github.com/cap-js/mcp-server>
